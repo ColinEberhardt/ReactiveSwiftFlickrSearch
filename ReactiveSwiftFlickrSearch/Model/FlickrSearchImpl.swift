@@ -58,7 +58,9 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       
       flickrRequest.callAPIMethodWithGET(method, arguments: arguments)
       
-      return nil
+      return RACDisposable(block: {
+        self.requests.removeObject(flickrRequest)
+      })
     })
     
   }

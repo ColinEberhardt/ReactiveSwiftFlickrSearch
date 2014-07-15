@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+class SearchResultsViewController: UIViewController {
+  
+  @IBOutlet var searchResultsTable: UITableView
+  
+  let viewModel: SearchResultsViewModel
+  
+  init(viewModel:SearchResultsViewModel) {
+    self.viewModel = viewModel
+    
+    super.init(nibName: "SearchResultsViewController", bundle: nil)
+    
+    edgesForExtendedLayout = .None
+    
+  }
+}

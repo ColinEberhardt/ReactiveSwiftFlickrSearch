@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+class BoxedBool: NSObject, Equatable {
+  let value: Bool
+  
+  init(_ value: Bool) {
+    self.value = value
+  }
+  
+  override func isEqual(object: AnyObject!) -> Bool {
+    if let otherBool = object as? BoxedBool {
+      return otherBool.value == self.value
+    }
+    return false
+  }
+}
+
+func ==(lhs: BoxedBool, rhs: BoxedBool) -> Bool {
+  return lhs.value == rhs.value
+}

@@ -7,3 +7,32 @@
 //
 
 import Foundation
+
+class FlickrSearchViewController: UIViewController {
+
+  @IBOutlet var searchTextField: UITextField
+  @IBOutlet var searchButton: UIButton
+  
+  let viewModel: FlickrSearchViewModel
+  
+  init(viewModel:FlickrSearchViewModel) {
+    self.viewModel = viewModel
+    
+    super.init(nibName: "FlickrSearchViewController", bundle: nil)
+    
+    edgesForExtendedLayout = .None
+
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    bindViewModel()
+  }
+  
+  func bindViewModel() {
+    searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
+    
+    searchButton.rac_command = viewModel.executeSearch
+  }
+}

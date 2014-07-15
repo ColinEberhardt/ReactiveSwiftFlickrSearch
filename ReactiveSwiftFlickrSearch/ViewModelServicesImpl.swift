@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+class ViewModelServicesImpl: ViewModelServices {
+  
+  let navigationController: UINavigationController
+  
+  init(navigationController: UINavigationController) {
+    self.navigationController = navigationController
+  }
+  
+  func pushViewModel(viewModel:AnyObject) {
+    if let searchResultsViewModel = viewModel as? SearchResultsViewModel {
+      navigationController.pushViewController(SearchResultsViewController(viewModel: searchResultsViewModel), animated: true)
+    }
+  }
+}

@@ -24,4 +24,12 @@ extension RACSignal {
       return mapClosure(nextAsT)
     }
   }
+  
+  func doNextAs<T: AnyObject>(nextClosure:(T) -> ()) -> RACSignal {
+    return self.doNext {
+      (next: AnyObject!) -> () in
+      let nextAsT = next as T
+      nextClosure(nextAsT)
+    }
+  }
 }

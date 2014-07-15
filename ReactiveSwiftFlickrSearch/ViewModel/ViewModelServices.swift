@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol ViewModelServices {
+  
+  func pushViewModel(viewModel:AnyObject)
+  
+}
