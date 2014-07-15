@@ -9,10 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+  var impl: FlickrSearchImpl?
                             
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    impl = FlickrSearchImpl();
+    var sig = impl!.flickrSearchSignal("fish")
+    sig.subscribeNext{
+      (next: AnyObject!) -> () in
+      let results = next as FlickrSearchResults
+      println(results)
+      println(results.photos[0].title)
+
+    }
+    
+    
+    
   }
 
   override func didReceiveMemoryWarning() {

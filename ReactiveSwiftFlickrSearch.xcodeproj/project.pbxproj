@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CC6ABF31975065D008F0262 /* FlickrPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6ABEF1975065D008F0262 /* FlickrPhoto.swift */; };
+		3CC6ABF41975065D008F0262 /* FlickrSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6ABF01975065D008F0262 /* FlickrSearch.swift */; };
+		3CC6ABF51975065D008F0262 /* FlickrSearchImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6ABF11975065D008F0262 /* FlickrSearchImpl.swift */; };
+		3CC6ABF61975065D008F0262 /* FlickrSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6ABF21975065D008F0262 /* FlickrSearchResult.swift */; };
+		3CC6ABF919750696008F0262 /* RACSignal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6ABF819750696008F0262 /* RACSignal+Extensions.swift */; };
 		3CE213DD1969B9E700CE9B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE213DC1969B9E700CE9B0B /* AppDelegate.swift */; };
 		3CE213DF1969B9E700CE9B0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE213DE1969B9E700CE9B0B /* ViewController.swift */; };
 		3CE213E21969B9E700CE9B0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE213E01969B9E700CE9B0B /* Main.storyboard */; };
 		3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE213E31969B9E700CE9B0B /* Images.xcassets */; };
 		3CE213F01969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */; };
 		3CE21D821969BD5600CE9B0B /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE21D771969BB6700CE9B0B /* libReactiveCocoa-iOS.a */; };
+		706B0F4AD7F142E28D83E73F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC9F0125DC94673BE34E6DE /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +81,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3CC6ABEF1975065D008F0262 /* FlickrPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhoto.swift; sourceTree = "<group>"; };
+		3CC6ABF01975065D008F0262 /* FlickrSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrSearch.swift; sourceTree = "<group>"; };
+		3CC6ABF11975065D008F0262 /* FlickrSearchImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrSearchImpl.swift; sourceTree = "<group>"; };
+		3CC6ABF21975065D008F0262 /* FlickrSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrSearchResult.swift; sourceTree = "<group>"; };
+		3CC6ABF819750696008F0262 /* RACSignal+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RACSignal+Extensions.swift"; path = "Util/RACSignal+Extensions.swift"; sourceTree = "<group>"; };
 		3CE213D71969B9E700CE9B0B /* ReactiveSwiftFlickrSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveSwiftFlickrSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE213DB1969B9E700CE9B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CE213DC1969B9E700CE9B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +97,8 @@
 		3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftFlickrSearchTests.swift; sourceTree = "<group>"; };
 		3CE21D6A1969BB6700CE9B0B /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		3CE21D831969BD7F00CE9B0B /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		925AF8DC64B84FA49E942471 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		DDC9F0125DC94673BE34E6DE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CE21D821969BD5600CE9B0B /* libReactiveCocoa-iOS.a in Frameworks */,
+				706B0F4AD7F142E28D83E73F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +121,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CC6ABEE1975065D008F0262 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3CC6ABEF1975065D008F0262 /* FlickrPhoto.swift */,
+				3CC6ABF01975065D008F0262 /* FlickrSearch.swift */,
+				3CC6ABF11975065D008F0262 /* FlickrSearchImpl.swift */,
+				3CC6ABF21975065D008F0262 /* FlickrSearchResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CC6ABF719750680008F0262 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3CC6ABF819750696008F0262 /* RACSignal+Extensions.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		3CE213CE1969B9E700CE9B0B = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +147,8 @@
 				3CE213EC1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests */,
 				3CE213D81969B9E700CE9B0B /* Products */,
 				3CE21D6A1969BB6700CE9B0B /* ReactiveCocoa.xcodeproj */,
+				925AF8DC64B84FA49E942471 /* Pods.xcconfig */,
+				5C577225BD6A4C1198E650C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +164,8 @@
 		3CE213D91969B9E700CE9B0B /* ReactiveSwiftFlickrSearch */ = {
 			isa = PBXGroup;
 			children = (
+				3CC6ABF719750680008F0262 /* Util */,
+				3CC6ABEE1975065D008F0262 /* Model */,
 				3CE213DC1969B9E700CE9B0B /* AppDelegate.swift */,
 				3CE213DE1969B9E700CE9B0B /* ViewController.swift */,
 				3CE213E01969B9E700CE9B0B /* Main.storyboard */,
@@ -178,6 +215,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5C577225BD6A4C1198E650C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDC9F0125DC94673BE34E6DE /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CE213F31969B9E800CE9B0B /* Build configuration list for PBXNativeTarget "ReactiveSwiftFlickrSearch" */;
 			buildPhases = (
+				04FFC06EDD674E188E90C0D3 /* Check Pods Manifest.lock */,
 				3CE213D31969B9E700CE9B0B /* Sources */,
 				3CE213D41969B9E700CE9B0B /* Frameworks */,
 				3CE213D51969B9E700CE9B0B /* Resources */,
+				18290FAB1FA049988228338F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,13 +377,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04FFC06EDD674E188E90C0D3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		18290FAB1FA049988228338F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3CE213D31969B9E700CE9B0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3CE213DF1969B9E700CE9B0B /* ViewController.swift in Sources */,
+				3CC6ABF31975065D008F0262 /* FlickrPhoto.swift in Sources */,
+				3CC6ABF919750696008F0262 /* RACSignal+Extensions.swift in Sources */,
+				3CC6ABF41975065D008F0262 /* FlickrSearch.swift in Sources */,
+				3CC6ABF61975065D008F0262 /* FlickrSearchResult.swift in Sources */,
 				3CE213DD1969B9E700CE9B0B /* AppDelegate.swift in Sources */,
+				3CC6ABF51975065D008F0262 /* FlickrSearchImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +536,7 @@
 		};
 		3CE213F41969B9E800CE9B0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 925AF8DC64B84FA49E942471 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -467,6 +553,7 @@
 		};
 		3CE213F51969B9E800CE9B0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 925AF8DC64B84FA49E942471 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -536,6 +623,7 @@
 				3CE213F51969B9E800CE9B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CE213F61969B9E800CE9B0B /* Build configuration list for PBXNativeTarget "ReactiveSwiftFlickrSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +632,7 @@
 				3CE213F81969B9E800CE9B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
