@@ -8,31 +8,40 @@
 
 import Foundation
 
-class TableViewBindingHelper: NSObject, UITableViewDataSource {
+@objc protocol ReactiveView {
+  func bindViewModel(viewModel: AnyObject)
+}
+
+class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelegate {
   
   let tableView: UITableView
-  var data: [FlickrPhoto]
+  let templateCell: UITableViewCell
   
-  init(tableView: UITableView, sourceSignal: RACSignal) {
+  var data: [AnyObject]
+
+  
+  init(tableView: UITableView, sourceSignal: RACSignal, nibName: String) {
     self.tableView = tableView
     self.data = []
     
-    super.init()
+    let nib = UINib(nibName: nibName, bundle: nil)
+
+    // create an instance of the template cell and register with the table view
+    templateCell = nib.instantiateWithOwner(nil, options: nil)[0] as UITableViewCell
+    tableView.registerNib(nib, forCellReuseIdentifier: templateCell.reuseIdentifier)
     
-   /* sourceSignal.subscribeNextAs {
-      (data:[FlickrPhoto]) -> () in
-      self.data = data
-      self.tableView.reloadData()
-    }*/
+    super.init()
     
     sourceSignal.subscribeNext {
       (d:AnyObject!) -> () in
-      self.data = d as [FlickrPhoto]
+      self.data = d as [AnyObject]
       self.tableView.reloadData()
+      println(self.data)
     }
     
     
     tableView.dataSource = self
+    tableView.delegate = self
   }
   
   func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
@@ -40,10 +49,16 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-    let photo = data[indexPath.row]
-    let cell = UITableViewCell()
-    cell.textLabel.text = photo.title
+    let item: AnyObject = data[indexPath.row]
+    let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier) as UITableViewCell
+    if let reactiveView = cell as? ReactiveView {
+      reactiveView.bindViewModel(item)
+    }
     return cell
+  }
+  
+  func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    return templateCell.frame.size.height
   }
   
 }

@@ -28,6 +28,14 @@
 		3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE213E31969B9E700CE9B0B /* Images.xcassets */; };
 		3CE213F01969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */; };
 		3CE21D821969BD5600CE9B0B /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE21D771969BB6700CE9B0B /* libReactiveCocoa-iOS.a */; };
+		3CF973DD19765B01003F00E9 /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF973DC19765B01003F00E9 /* SearchResultsTableViewCell.xib */; };
+		3CF973DF19765CFF003F00E9 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */; };
+		3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */; };
+		3CF973E3197665DE003F00E9 /* RecentSearchItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */; };
+		3CF973E5197665F5003F00E9 /* RecentSearchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */; };
+		3CFDE07E1976D8E7008307B1 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDE07D1976D8E7008307B1 /* MyViewController.swift */; };
+		3CFDE0871976D988008307B1 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFDE0861976D988008307B1 /* MyCell.xib */; };
+		3CFDE0891976E79E008307B1 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDE0881976E79E008307B1 /* MyCell.swift */; };
 		706B0F4AD7F142E28D83E73F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC9F0125DC94673BE34E6DE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +125,14 @@
 		3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftFlickrSearchTests.swift; sourceTree = "<group>"; };
 		3CE21D6A1969BB6700CE9B0B /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		3CE21D831969BD7F00CE9B0B /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		3CF973DC19765B01003F00E9 /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
+		3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousSearchViewModel.swift; sourceTree = "<group>"; };
+		3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentSearchItemTableViewCell.xib; sourceTree = "<group>"; };
+		3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchItemTableViewCell.swift; sourceTree = "<group>"; };
+		3CFDE07D1976D8E7008307B1 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		3CFDE0861976D988008307B1 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
+		3CFDE0881976E79E008307B1 /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		925AF8DC64B84FA49E942471 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DDC9F0125DC94673BE34E6DE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,10 +160,14 @@
 		3C0E600919757DE30009D5B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3C0E601219758A2B0009D5B2 /* FlickrSearchViewController.swift */,
 				3C0E60211975B3930009D5B2 /* FlickrSearchViewController.xib */,
+				3C0E601219758A2B0009D5B2 /* FlickrSearchViewController.swift */,
 				3C0E602D1975D33C0009D5B2 /* SearchResultsViewController.xib */,
 				3C0E602F1975D3500009D5B2 /* SearchResultsViewController.swift */,
+				3CF973DC19765B01003F00E9 /* SearchResultsTableViewCell.xib */,
+				3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */,
+				3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */,
+				3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +178,7 @@
 				3C0E601D19758F060009D5B2 /* FlickrSearchViewModel.swift */,
 				3C0E60291975D2770009D5B2 /* ViewModelServices.swift */,
 				3C1497221975D730002548CC /* SearchResultsViewModel.swift */,
+				3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -218,6 +239,9 @@
 				3CE213DA1969B9E700CE9B0B /* Supporting Files */,
 				3CE21D831969BD7F00CE9B0B /* BridgingHeader.h */,
 				3C0E602B1975D2B70009D5B2 /* ViewModelServicesImpl.swift */,
+				3CFDE07D1976D8E7008307B1 /* MyViewController.swift */,
+				3CFDE0861976D988008307B1 /* MyCell.xib */,
+				3CFDE0881976E79E008307B1 /* MyCell.swift */,
 			);
 			path = ReactiveSwiftFlickrSearch;
 			sourceTree = "<group>";
@@ -410,7 +434,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0E60221975B3930009D5B2 /* FlickrSearchViewController.xib in Resources */,
+				3CFDE0871976D988008307B1 /* MyCell.xib in Resources */,
+				3CF973E3197665DE003F00E9 /* RecentSearchItemTableViewCell.xib in Resources */,
 				3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */,
+				3CF973DD19765B01003F00E9 /* SearchResultsTableViewCell.xib in Resources */,
 				3C0E602E1975D33C0009D5B2 /* SearchResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +490,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CC6ABF31975065D008F0262 /* FlickrPhoto.swift in Sources */,
+				3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */,
 				3CC6ABF919750696008F0262 /* RACSignal+Extensions.swift in Sources */,
+				3CF973DF19765CFF003F00E9 /* SearchResultsTableViewCell.swift in Sources */,
 				3CC6ABF41975065D008F0262 /* FlickrSearch.swift in Sources */,
 				3CC6ABF61975065D008F0262 /* FlickrSearchResult.swift in Sources */,
 				3C0E601E19758F060009D5B2 /* FlickrSearchViewModel.swift in Sources */,
@@ -477,6 +506,9 @@
 				3C0E601319758A2B0009D5B2 /* FlickrSearchViewController.swift in Sources */,
 				3C0E602C1975D2B70009D5B2 /* ViewModelServicesImpl.swift in Sources */,
 				3CC6ABF51975065D008F0262 /* FlickrSearchImpl.swift in Sources */,
+				3CF973E5197665F5003F00E9 /* RecentSearchItemTableViewCell.swift in Sources */,
+				3CFDE0891976E79E008307B1 /* MyCell.swift in Sources */,
+				3CFDE07E1976D8E7008307B1 /* MyViewController.swift in Sources */,
 				3C1497231975D730002548CC /* SearchResultsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

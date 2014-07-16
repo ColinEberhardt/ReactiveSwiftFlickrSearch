@@ -46,6 +46,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         .subscribeNext {
           (next: AnyObject!) -> () in
           subscriber.sendNext(next)
+          subscriber.sendCompleted()
         }
       
       let failSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didFailWithError:"),
@@ -68,6 +69,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   func flickrSearchSignal(searchString: String) -> RACSignal {
     
     func photosFromDictionary (response: NSDictionary) -> FlickrSearchResults {
+      println(response)
       let photoArray = response.valueForKeyPath("photos.photo") as [[String: String]]
       let photos = photoArray.map {
         (photoDict: [String:String]) -> FlickrPhoto in

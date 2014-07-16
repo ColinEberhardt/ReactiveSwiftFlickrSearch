@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let viewController = FlickrSearchViewController(viewModel: viewModel)
     navigationController.pushViewController(viewController, animated: false)
     
+/*    var vc = MyViewController()
+    navigationController.pushViewController(vc, animated: false)*/
+    
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     window.rootViewController = navigationController
     window.makeKeyAndVisible()

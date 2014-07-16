@@ -10,15 +10,15 @@ import Foundation
 
 class ViewModelServicesImpl: ViewModelServices {
   
-  let navigationController: UINavigationController
+  let _navigationController: UINavigationController
   
   init(navigationController: UINavigationController) {
-    self.navigationController = navigationController
+    _navigationController = navigationController
   }
   
   func pushViewModel(viewModel:AnyObject) {
     if let searchResultsViewModel = viewModel as? SearchResultsViewModel {
-      navigationController.pushViewController(SearchResultsViewController(viewModel: searchResultsViewModel), animated: true)
+      _navigationController.pushViewController(SearchResultsViewController(viewModel: searchResultsViewModel), animated: true)
     }
   }
 }

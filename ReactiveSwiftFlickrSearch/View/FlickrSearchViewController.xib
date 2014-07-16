@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FlickrSearchViewController" customModule="ReactiveSwiftFlickrSearch" customModuleProvider="target">
             <connections>
+                <outlet property="loadingIndicator" destination="n6B-un-J7R" id="jkt-zx-fY2"/>
                 <outlet property="searchButton" destination="sIy-tl-dXy" id="IY0-rq-Pcj"/>
+                <outlet property="searchHistoryTable" destination="gS4-6F-Ice" id="trW-Xb-tyl"/>
                 <outlet property="searchTextField" destination="ut2-JU-ypr" id="VN8-nn-7Rt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ylp-Ob-NaX"/>
             </connections>
@@ -16,19 +18,31 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ut2-JU-ypr">
-                    <rect key="frame" x="20" y="25" width="149" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ut2-JU-ypr">
+                    <rect key="frame" x="20" y="25" width="323" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIy-tl-dXy">
-                    <rect key="frame" x="192" y="25" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIy-tl-dXy">
+                    <rect key="frame" x="382" y="25" width="46" height="30"/>
                     <state key="normal" title="Go">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="n6B-un-J7R">
+                    <rect key="frame" x="315" y="30" width="20" height="20"/>
+                </activityIndicatorView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gS4-6F-Ice">
+                    <rect key="frame" x="0.0" y="85" width="480" height="387"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="sIy-tl-dXy" firstAttribute="leading" secondItem="ut2-JU-ypr" secondAttribute="trailing" constant="39" id="Qsx-DE-kN1"/>
+                <constraint firstAttribute="trailing" secondItem="sIy-tl-dXy" secondAttribute="trailing" constant="52" id="hVD-qU-nAi"/>
+                <constraint firstItem="sIy-tl-dXy" firstAttribute="leading" secondItem="n6B-un-J7R" secondAttribute="trailing" constant="47" id="sEv-IC-lUL"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>

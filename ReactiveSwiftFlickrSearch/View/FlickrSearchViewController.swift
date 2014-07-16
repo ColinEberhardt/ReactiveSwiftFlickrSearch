@@ -12,16 +12,18 @@ class FlickrSearchViewController: UIViewController {
 
   @IBOutlet var searchTextField: UITextField
   @IBOutlet var searchButton: UIButton
+  @IBOutlet var searchHistoryTable: UITableView
+  @IBOutlet var loadingIndicator: UIActivityIndicatorView
   
-  let viewModel: FlickrSearchViewModel
+  let _viewModel: FlickrSearchViewModel
+  var _bindingHelper: TableViewBindingHelper!
   
   init(viewModel:FlickrSearchViewModel) {
-    self.viewModel = viewModel
+    _viewModel = viewModel
     
     super.init(nibName: "FlickrSearchViewController", bundle: nil)
     
     edgesForExtendedLayout = .None
-
   }
   
   override func viewDidLoad() {
@@ -31,8 +33,21 @@ class FlickrSearchViewController: UIViewController {
   }
   
   func bindViewModel() {
-    searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
+    searchTextField.rac_textSignal() ~> RAC(_viewModel, "searchText")
     
-    searchButton.rac_command = viewModel.executeSearch
+    _viewModel.executeSearch.executing.NOT() ~> RAC(loadingIndicator, "hidden")
+    
+    _viewModel.executeSearch.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
+    
+    searchButton.rac_command = _viewModel.executeSearch
+    
+    _bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable, sourceSignal: RACObserve(_viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell")
+    
+    _viewModel.connectionErrors.subscribeNextAs {
+      (error: NSError) -> () in
+      let alert = UIAlertView(title: "Connection Error", message: "There was a problem reaching Flickr", delegate: nil, cancelButtonTitle: "OK")
+      alert.show()
+    }
   }
+  
 }

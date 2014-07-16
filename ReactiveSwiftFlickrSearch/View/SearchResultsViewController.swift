@@ -12,13 +12,12 @@ class SearchResultsViewController: UIViewController {
   
   @IBOutlet var searchResultsTable: UITableView
   
-  let viewModel: SearchResultsViewModel
-  var bindingHelper: TableViewBindingHelper!
+  let _viewModel: SearchResultsViewModel
+  var _bindingHelper: TableViewBindingHelper!
   
   init(viewModel:SearchResultsViewModel) {
-    self.viewModel = viewModel
+    _viewModel = viewModel
 
-    
     super.init(nibName: "SearchResultsViewController", bundle: nil)
     
     edgesForExtendedLayout = .None
@@ -27,7 +26,7 @@ class SearchResultsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(self.viewModel, "searchResults"))
+    _bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(_viewModel, "searchResults"), nibName: "SearchResultsTableViewCell")
     
     
   }

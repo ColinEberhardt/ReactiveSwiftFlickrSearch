@@ -15,12 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="utR-wI-Gff">
-                    <rect key="frame" x="0.0" y="0.0" width="292" height="480"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="utR-wI-Gff">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="utR-wI-Gff" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NOF-LN-UUL"/>
+                <constraint firstAttribute="trailing" secondItem="utR-wI-Gff" secondAttribute="trailing" id="d2G-RK-EkL"/>
+                <constraint firstItem="utR-wI-Gff" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mLZ-z7-AMn"/>
+                <constraint firstAttribute="bottom" secondItem="utR-wI-Gff" secondAttribute="bottom" id="rNE-yq-ygh"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <point key="canvasLocation" x="177" y="154"/>
         </view>
