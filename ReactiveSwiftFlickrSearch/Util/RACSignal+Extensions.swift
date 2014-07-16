@@ -12,7 +12,7 @@ extension RACSignal {
   func subscribeNextAs<T>(nextClosure:(T) -> ()) -> () {
     self.subscribeNext {
       (next: AnyObject!) -> () in
-      let nextAsT = next as T
+      let nextAsT = next! as T
       nextClosure(nextAsT)
     }
   }

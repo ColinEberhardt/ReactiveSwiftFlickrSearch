@@ -8,13 +8,16 @@
 
 import Foundation
 
-class SearchResultsViewModel {
+class SearchResultsViewModel: NSObject {
   
   let services: ViewModelServices
-  let searchResults: [FlickrPhoto]
+  var searchResults: [FlickrPhoto]
   
   init(services: ViewModelServices, searchResults: [FlickrPhoto]) {
     self.services = services
     self.searchResults = searchResults
+    
+    super.init()
+    
   }
 }
