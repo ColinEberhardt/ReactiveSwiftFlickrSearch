@@ -28,6 +28,8 @@
 		3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE213E31969B9E700CE9B0B /* Images.xcassets */; };
 		3CE213F01969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */; };
 		3CE21D821969BD5600CE9B0B /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE21D771969BB6700CE9B0B /* libReactiveCocoa-iOS.a */; };
+		3CF710D219782DB00011554F /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF710D019782DB00011554F /* comment.png */; };
+		3CF710D319782DB00011554F /* fave.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF710D119782DB00011554F /* fave.png */; };
 		3CF973DD19765B01003F00E9 /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF973DC19765B01003F00E9 /* SearchResultsTableViewCell.xib */; };
 		3CF973DF19765CFF003F00E9 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */; };
 		3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */; };
@@ -125,6 +127,8 @@
 		3CE213EF1969B9E800CE9B0B /* ReactiveSwiftFlickrSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftFlickrSearchTests.swift; sourceTree = "<group>"; };
 		3CE21D6A1969BB6700CE9B0B /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		3CE21D831969BD7F00CE9B0B /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		3CF710D019782DB00011554F /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
+		3CF710D119782DB00011554F /* fave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fave.png; sourceTree = "<group>"; };
 		3CF973DC19765B01003F00E9 /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
 		3CF973DE19765CFF003F00E9 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousSearchViewModel.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		3C0E600919757DE30009D5B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3CF710D019782DB00011554F /* comment.png */,
+				3CF710D119782DB00011554F /* fave.png */,
 				3C0E60211975B3930009D5B2 /* FlickrSearchViewController.xib */,
 				3C0E601219758A2B0009D5B2 /* FlickrSearchViewController.swift */,
 				3C0E602D1975D33C0009D5B2 /* SearchResultsViewController.xib */,
@@ -438,7 +444,9 @@
 				3CF973E3197665DE003F00E9 /* RecentSearchItemTableViewCell.xib in Resources */,
 				3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */,
 				3CF973DD19765B01003F00E9 /* SearchResultsTableViewCell.xib in Resources */,
+				3CF710D319782DB00011554F /* fave.png in Resources */,
 				3C0E602E1975D33C0009D5B2 /* SearchResultsViewController.xib in Resources */,
+				3CF710D219782DB00011554F /* comment.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

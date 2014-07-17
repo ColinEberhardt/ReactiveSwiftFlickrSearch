@@ -10,10 +10,18 @@ import Foundation
 
 class RecentSearchItemTableViewCell: UITableViewCell, ReactiveView {
   
-  @IBOutlet var label: UILabel
+  
+  @IBOutlet var thumbnailImage: UIImageView
+  @IBOutlet var totalResultsLabel: UILabel
+  @IBOutlet var recentSearchLabel: UILabel
   
   func bindViewModel(viewModel: AnyObject) {
     let previousSearch = viewModel as PreviousSearchViewModel
-    label.text = previousSearch.searchString
+    recentSearchLabel.text = previousSearch.searchString
+    totalResultsLabel.text = "\(previousSearch.totalResults)"
+    
+    let data = NSData(contentsOfURL: previousSearch.thumbnail)
+    let image = UIImage(data: data)
+    thumbnailImage.image = image
   }
 }

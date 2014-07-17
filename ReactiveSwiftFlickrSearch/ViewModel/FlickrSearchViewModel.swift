@@ -28,7 +28,7 @@ class FlickrSearchViewModel: NSObject {
     
     let validSearchSignal = RACObserve(self, "searchText").mapAs {
         (text: NSString) -> NSNumber in
-        return text.length > 4
+        return text.length > 3
       }.distinctUntilChanged();
     
     executeSearch = RACCommand(enabled: validSearchSignal) {
