@@ -12,4 +12,6 @@ protocol ViewModelServices {
   
   func pushViewModel(viewModel:AnyObject)
   
+  var flickrSearchService: FlickrSearch { get }
+  
 }

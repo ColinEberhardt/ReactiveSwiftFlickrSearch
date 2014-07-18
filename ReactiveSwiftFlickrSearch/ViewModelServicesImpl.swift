@@ -11,9 +11,17 @@ import Foundation
 class ViewModelServicesImpl: ViewModelServices {
   
   let _navigationController: UINavigationController
+  let _flickrSearchService: FlickrSearch
+  
+  var flickrSearchService: FlickrSearch {
+    get {
+      return _flickrSearchService
+    }
+  }
   
   init(navigationController: UINavigationController) {
     _navigationController = navigationController
+    _flickrSearchService = FlickrSearchImpl()
   }
   
   func pushViewModel(viewModel:AnyObject) {

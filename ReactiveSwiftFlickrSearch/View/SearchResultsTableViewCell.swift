@@ -18,7 +18,7 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
   @IBOutlet var titleLabel: UILabel
   
   func bindViewModel(viewModel: AnyObject) {
-    let photo = viewModel as FlickrPhoto
+    let photo = viewModel as SearchResultsItemViewModel
     titleLabel.text = photo.title
     
     signalForImage(photo.url).deliverOn(RACScheduler.mainThreadScheduler())

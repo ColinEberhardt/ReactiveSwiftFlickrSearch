@@ -11,13 +11,12 @@ import Foundation
 class SearchResultsViewModel: NSObject {
   
   let services: ViewModelServices
-  var searchResults: [FlickrPhoto]
+  var searchResults: [SearchResultsItemViewModel]
   
   init(services: ViewModelServices, searchResults: [FlickrPhoto]) {
     self.services = services
-    self.searchResults = searchResults
+    self.searchResults = searchResults.map { SearchResultsItemViewModel(photo: $0, services: services ) }
     
     super.init()
-    
   }
 }

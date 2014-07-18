@@ -10,6 +10,7 @@ import Foundation
 
 protocol FlickrSearch {
   
-  func flickrSearchSignal(searchString: String) -> RACSignal;
+  func flickrSearchSignal(searchString: String) -> RACSignal
   
+  func flickrImageMetadata(photoId: String) -> RACSignal
 }

@@ -32,4 +32,16 @@ extension RACSignal {
       nextClosure(nextAsT)
     }
   }
+  
+  func combineLatestAs<T, U, R: AnyObject>(signals:[RACSignal], reduce:(T,U) -> R) -> RACSignal {
+    return RACSignal.combineLatest(signals).mapAs {
+      (tuple: RACTuple) -> R in
+      return reduce(tuple.first as T, tuple.second as U)
+    }
+  }
+  
+  /*RACSignal.combineLatest([favouritesSignal, commentsSignal]).mapAs {
+  (tuple: RACTuple) -> FlickrPhotoMetadata in
+  return FlickrPhotoMetadata(favourites: tuple.first.integerValue, comments: tuple.second.integerValue)
+  };*/
 }

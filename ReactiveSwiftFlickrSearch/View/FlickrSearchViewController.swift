@@ -48,6 +48,15 @@ class FlickrSearchViewController: UIViewController {
       let alert = UIAlertView(title: "Connection Error", message: "There was a problem reaching Flickr", delegate: nil, cancelButtonTitle: "OK")
       alert.show()
     }
+    
+    // for some reason having this code within the subscribeNext closure
+    // causes a build error
+    func resign() -> () {
+      searchTextField.resignFirstResponder()
+    }
+    _viewModel.executeSearch.executionSignals.subscribeNext{(any:AnyObject!) -> () in
+      resign()
+    }
   }
-  
+
 }

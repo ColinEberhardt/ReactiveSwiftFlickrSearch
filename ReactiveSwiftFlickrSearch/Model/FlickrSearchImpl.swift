@@ -85,6 +85,27 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       transform: photosFromDictionary);
   }
   
-  
-  
+  func flickrImageMetadata(photoId: String) -> RACSignal {
+    
+    // String is not AnyObject?
+    let favouritesSignal = signalFromAPIMethod("flickr.photos.getFavorites",
+      arguments: ["photot_id": photoId]) {
+        (response: NSDictionary) -> NSString in
+        return response.valueForKey("photo.total") as NSString
+      }
+    
+    let commentsSignal = signalFromAPIMethod("flickr.photos.getInfo",
+      arguments: ["photot_id": photoId]) {
+        (response: NSDictionary) -> NSString in
+        return response.valueForKey("photo.comments._text") as NSString
+    }
+    
+    return RACSignal.combineLatest([favouritesSignal, commentsSignal]).mapAs {
+      (tuple: RACTuple) -> FlickrPhotoMetadata in
+      return FlickrPhotoMetadata(favourites: tuple.first.integerValue, comments: tuple.second.integerValue)
+    };
+  }
+
+
+
 }

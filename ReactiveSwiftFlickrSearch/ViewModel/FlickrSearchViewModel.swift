@@ -15,13 +15,11 @@ class FlickrSearchViewModel: NSObject {
   let connectionErrors: RACSignal!
   var previousSearches: [PreviousSearchViewModel]
   
-  let _flickSearch: FlickrSearch
   let _services: ViewModelServices
   
   init(services: ViewModelServices) {
     
     _services = services
-    _flickSearch = FlickrSearchImpl()
     previousSearches = []
     
     super.init()
@@ -40,7 +38,7 @@ class FlickrSearchViewModel: NSObject {
   }
   
   func _executeSearchSignal() -> RACSignal {
-    return _flickSearch.flickrSearchSignal(searchText).doNextAs {
+    return _services.flickrSearchService.flickrSearchSignal(searchText).doNextAs {
       (results: FlickrSearchResults) -> () in
       let viewModel = SearchResultsViewModel(services: self._services, searchResults: results.photos)
       self._services.pushViewModel(viewModel)
@@ -52,7 +50,6 @@ class FlickrSearchViewModel: NSObject {
     let matches = previousSearches.filter { $0.searchString == self.searchText }
     
     var previousSearchesUpdated = previousSearches
-
 
     if matches.count > 0 {
       let match = matches[0]
