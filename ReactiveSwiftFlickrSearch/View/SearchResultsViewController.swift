@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchResultsViewController: UIViewController {
+class SearchResultsViewController: UIViewController, UITableViewDelegate {
   
   @IBOutlet var searchResultsTable: UITableView
   
@@ -27,7 +27,14 @@ class SearchResultsViewController: UIViewController {
     super.viewDidLoad()
     
     _bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(_viewModel, "searchResults"), nibName: "SearchResultsTableViewCell")
-    
-    
+    _bindingHelper.delegate = self
+  }
+  
+  func scrollViewDidScroll(scrollView: UIScrollView!) {
+    let cells = searchResultsTable.visibleCells()
+    for cell in cells as [SearchResultsTableViewCell] {
+      let value = -40 + (cell.frame.origin.y - searchResultsTable.contentOffset.y) / 5;
+      cell.setParallax(value)
+    }
   }
 }

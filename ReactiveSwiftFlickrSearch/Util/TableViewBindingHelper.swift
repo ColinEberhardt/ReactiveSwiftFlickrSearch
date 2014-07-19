@@ -16,7 +16,7 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
   
   let tableView: UITableView
   let templateCell: UITableViewCell
-  
+  var delegate: UITableViewDelegate?
   var data: [AnyObject]
 
   
@@ -36,9 +36,7 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
       (d:AnyObject!) -> () in
       self.data = d as [AnyObject]
       self.tableView.reloadData()
-      println(self.data)
     }
-    
     
     tableView.dataSource = self
     tableView.delegate = self
@@ -61,4 +59,23 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
     return templateCell.frame.size.height
   }
   
+  func scrollViewDidScroll(scrollView: UIScrollView!) {
+    if self.delegate?.respondsToSelector(Selector("scrollViewDidScroll:")) {
+      self.delegate?.scrollViewDidScroll?(scrollView);
+    }
+  }
+  
+  /*override func respondsToSelector(aSelector: Selector) -> Bool {
+    if self.delegate?.respondsToSelector(aSelector) {
+      return true
+    }
+    return super.respondsToSelector(aSelector)
+  }
+  
+  override func forwardingTargetForSelector(aSelector: Selector) -> AnyObject! {
+    if self.delegate? .respondsToSelector(aSelector) {
+      return self.delegate
+    }
+    return super.forwardingTargetForSelector(aSelector)
+  }*/
 }

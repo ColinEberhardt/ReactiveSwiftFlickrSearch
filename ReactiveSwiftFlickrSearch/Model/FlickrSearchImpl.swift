@@ -69,7 +69,6 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   func flickrSearchSignal(searchString: String) -> RACSignal {
     
     func photosFromDictionary (response: NSDictionary) -> FlickrSearchResults {
-      println(response)
       let photoArray = response.valueForKeyPath("photos.photo") as [[String: String]]
       let photos = photoArray.map {
         (photoDict: [String:String]) -> FlickrPhoto in

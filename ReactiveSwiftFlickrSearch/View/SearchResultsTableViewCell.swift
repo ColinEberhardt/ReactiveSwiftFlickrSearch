@@ -42,5 +42,9 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     })
     return signal.subscribeOn(scheduler)
   }
+  
+  func setParallax(value:Float) {
+    imageThumbnailView.transform = CGAffineTransformMakeTranslation(0, value)
+  }
 }
 
