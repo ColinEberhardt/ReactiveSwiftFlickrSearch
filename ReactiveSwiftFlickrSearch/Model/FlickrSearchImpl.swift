@@ -41,19 +41,34 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       let sucessSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didCompleteWithResponse:"),
         fromProtocol: OFFlickrAPIRequestDelegate.self)
       
-      extractSecondTupleArg(sucessSignal)
+     /* sucessSignal.filterAs {
+          (tuple: RACTuple) -> Bool in
+          tuple.first as NSObject == flickrRequest
+        }*/
+      
+      sucessSignal.filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
+        .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
         .mapAs(transform)
         .subscribeNext {
           (next: AnyObject!) -> () in
           subscriber.sendNext(next)
           subscriber.sendCompleted()
-        }
+      }
+      
+      /*extractSecondTupleArg(sucessSignal)
+        .mapAs(transform)
+        .subscribeNext {
+          (next: AnyObject!) -> () in
+          subscriber.sendNext(next)
+          subscriber.sendCompleted()
+        }*/
       
       let failSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didFailWithError:"),
         fromProtocol: OFFlickrAPIRequestDelegate.self)
       
       extractSecondTupleArg(failSignal).subscribeNextAs {
         (error: NSError) -> () in
+        println("error: \(error)")
         subscriber.sendError(error)
       }
       
@@ -88,15 +103,15 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     
     // String is not AnyObject?
     let favouritesSignal = signalFromAPIMethod("flickr.photos.getFavorites",
-      arguments: ["photot_id": photoId]) {
+      arguments: ["photo_id": photoId]) {
         (response: NSDictionary) -> NSString in
-        return response.valueForKey("photo.total") as NSString
+        return response.valueForKeyPath("photo.total") as NSString
       }
-    
+  
     let commentsSignal = signalFromAPIMethod("flickr.photos.getInfo",
-      arguments: ["photot_id": photoId]) {
+      arguments: ["photo_id": photoId]) {
         (response: NSDictionary) -> NSString in
-        return response.valueForKey("photo.comments._text") as NSString
+        return response.valueForKeyPath("photo.comments._text") as NSString
     }
     
     return RACSignal.combineLatest([favouritesSignal, commentsSignal]).mapAs {

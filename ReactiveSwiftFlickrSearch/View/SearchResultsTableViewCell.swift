@@ -21,6 +21,8 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     let photo = viewModel as SearchResultsItemViewModel
     titleLabel.text = photo.title
     
+    imageThumbnailView.contentMode = .ScaleToFill
+    
     signalForImage(photo.url).deliverOn(RACScheduler.mainThreadScheduler())
       .takeUntil(self.rac_prepareForReuseSignal)
       .subscribeNextAs {
@@ -28,8 +30,25 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
         self.imageThumbnailView.image = image
       }
     
+    RACObserve(photo, "favourites").subscribeNextAs {
+      (faves:NSNumber) -> () in
+      self.favouritesLabel.text = faves == -1 ? "" : "\(faves)"
+      self.favouritesIcon.hidden = faves == -1
+    }
+    
+    RACObserve(photo, "comments").subscribeNextAs {
+      (comments:NSNumber) -> () in
+      self.commentsLabel.text = comments == -1 ? "" : "\(comments)"
+      self.commentsIcon.hidden = comments == -1
+    }
+    
+    photo.isVisible = true
+    self.rac_prepareForReuseSignal.subscribeNext {
+      (next: AnyObject!) -> () in
+      photo.isVisible = false
+    }
   }
-  
+
   func signalForImage(imageUrl: NSURL) -> RACSignal{
     let scheduler = RACScheduler(priority: RACSchedulerPriorityBackground)
     let signal = RACSignal.createSignal({

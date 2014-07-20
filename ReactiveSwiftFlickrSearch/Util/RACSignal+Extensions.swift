@@ -17,11 +17,19 @@ extension RACSignal {
     }
   }
   
-  func mapAs<T: AnyObject, U: AnyObject>(mapClosure:(T) -> (U)) -> RACSignal {
+  func mapAs<T: AnyObject, U: AnyObject>(mapClosure:(T) -> U) -> RACSignal {
     return self.map {
       (next: AnyObject!) -> AnyObject! in
       let nextAsT = next as T
       return mapClosure(nextAsT)
+    }
+  }
+  
+  func filterAs<T: AnyObject>(filterClosure:(T) -> Bool) -> RACSignal {
+    return self.filter {
+      (next: AnyObject!) -> Bool in
+      let nextAsT = next as T
+      return filterClosure(nextAsT)
     }
   }
   
@@ -40,8 +48,4 @@ extension RACSignal {
     }
   }
   
-  /*RACSignal.combineLatest([favouritesSignal, commentsSignal]).mapAs {
-  (tuple: RACTuple) -> FlickrPhotoMetadata in
-  return FlickrPhotoMetadata(favourites: tuple.first.integerValue, comments: tuple.second.integerValue)
-  };*/
 }
