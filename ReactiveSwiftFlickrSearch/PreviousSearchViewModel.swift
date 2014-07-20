@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PreviousSearchViewModel {
+class PreviousSearchViewModel: NSObject {
 
   let searchString: String
   let totalResults: Int

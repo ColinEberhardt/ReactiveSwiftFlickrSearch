@@ -16,13 +16,15 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
   
   let tableView: UITableView
   let templateCell: UITableViewCell
+  let selectionCommand: RACCommand?
   var delegate: UITableViewDelegate?
   var data: [AnyObject]
 
   
-  init(tableView: UITableView, sourceSignal: RACSignal, nibName: String) {
+  init(tableView: UITableView, sourceSignal: RACSignal, nibName: String, selectionCommand: RACCommand? = nil) {
     self.tableView = tableView
     self.data = []
+    self.selectionCommand = selectionCommand
     
     let nib = UINib(nibName: nibName, bundle: nil)
 
@@ -57,6 +59,12 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
   
   func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
     return templateCell.frame.size.height
+  }
+  
+  func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    if selectionCommand {
+      selectionCommand?.execute(data[indexPath.row])
+    }
   }
   
   func scrollViewDidScroll(scrollView: UIScrollView!) {

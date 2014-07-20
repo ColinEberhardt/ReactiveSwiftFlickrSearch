@@ -33,6 +33,8 @@ class FlickrSearchViewController: UIViewController {
   }
   
   func bindViewModel() {
+    title = _viewModel.title
+    
     searchTextField.rac_textSignal() ~> RAC(_viewModel, "searchText")
     
     _viewModel.executeSearch.executing.NOT() ~> RAC(loadingIndicator, "hidden")
@@ -41,7 +43,9 @@ class FlickrSearchViewController: UIViewController {
     
     searchButton.rac_command = _viewModel.executeSearch
     
-    _bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable, sourceSignal: RACObserve(_viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell")
+    _bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable,
+      sourceSignal: RACObserve(_viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell",
+      selectionCommand: _viewModel.previousSearchSelected)
     
     _viewModel.connectionErrors.subscribeNextAs {
       (error: NSError) -> () in

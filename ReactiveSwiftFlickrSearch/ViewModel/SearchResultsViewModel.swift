@@ -12,10 +12,12 @@ class SearchResultsViewModel: NSObject {
   
   let services: ViewModelServices
   var searchResults: [SearchResultsItemViewModel]
+  let title: String
   
-  init(services: ViewModelServices, searchResults: [FlickrPhoto]) {
+  init(services: ViewModelServices, searchResults: FlickrSearchResults) {
     self.services = services
-    self.searchResults = searchResults.map { SearchResultsItemViewModel(photo: $0, services: services ) }
+    self.title = searchResults.searchString
+    self.searchResults = searchResults.photos.map { SearchResultsItemViewModel(photo: $0, services: services ) }
     
     super.init()
   }

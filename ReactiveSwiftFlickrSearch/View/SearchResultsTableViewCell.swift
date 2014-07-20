@@ -21,6 +21,8 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     let photo = viewModel as SearchResultsItemViewModel
     titleLabel.text = photo.title
     
+    self.clipsToBounds = true
+    
     imageThumbnailView.contentMode = .ScaleToFill
     
     signalForImage(photo.url).deliverOn(RACScheduler.mainThreadScheduler())
@@ -45,6 +47,7 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     photo.isVisible = true
     self.rac_prepareForReuseSignal.subscribeNext {
       (next: AnyObject!) -> () in
+      self.imageThumbnailView.image = nil
       photo.isVisible = false
     }
   }

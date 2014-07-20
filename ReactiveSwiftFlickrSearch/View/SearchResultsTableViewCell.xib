@@ -15,13 +15,13 @@
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PAd-x8-zcY">
                         <rect key="frame" x="142" y="85" width="37" height="37"/>
                     </activityIndicatorView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SCj-xy-PWk">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SCj-xy-PWk">
                         <rect key="frame" x="0.0" y="-40" width="320" height="280"/>
                     </imageView>
                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="De2-wu-Kdh">
                         <rect key="frame" x="0.0" y="173" width="320" height="33"/>
                         <subviews>
-                            <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVu-vG-yjd">
+                            <view alpha="0.49999999999999994" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVu-vG-yjd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -50,7 +50,7 @@
                                 <rect key="frame" x="201" y="6" width="22" height="22"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nVu-vG-yjd" firstAttribute="leading" secondItem="De2-wu-Kdh" secondAttribute="leading" id="8ZH-Dz-45T"/>
                             <constraint firstAttribute="trailing" secondItem="nVu-vG-yjd" secondAttribute="trailing" id="RuH-Av-bRi"/>
@@ -61,15 +61,11 @@
                 </subviews>
                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="SCj-xy-PWk" firstAttribute="top" secondItem="sQF-C1-BQK" secondAttribute="top" id="4gT-VV-QkB"/>
                     <constraint firstAttribute="bottom" secondItem="De2-wu-Kdh" secondAttribute="bottom" id="FYf-02-3aA"/>
                     <constraint firstAttribute="trailing" secondItem="De2-wu-Kdh" secondAttribute="trailing" id="Nn2-jV-o3l"/>
                     <constraint firstAttribute="centerX" secondItem="PAd-x8-zcY" secondAttribute="centerX" id="SMm-Kb-yzG"/>
                     <constraint firstItem="De2-wu-Kdh" firstAttribute="leading" secondItem="sQF-C1-BQK" secondAttribute="leading" id="ZZa-zA-CBB"/>
-                    <constraint firstAttribute="trailing" secondItem="SCj-xy-PWk" secondAttribute="trailing" id="bbp-BO-TFs"/>
                     <constraint firstAttribute="centerY" secondItem="PAd-x8-zcY" secondAttribute="centerY" id="bw5-K4-ZbN"/>
-                    <constraint firstItem="SCj-xy-PWk" firstAttribute="leading" secondItem="sQF-C1-BQK" secondAttribute="leading" id="eYo-ee-Eub"/>
-                    <constraint firstAttribute="bottom" secondItem="SCj-xy-PWk" secondAttribute="bottom" id="pwK-ui-gJx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

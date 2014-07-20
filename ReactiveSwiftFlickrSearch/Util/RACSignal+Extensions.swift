@@ -40,12 +40,13 @@ extension RACSignal {
       nextClosure(nextAsT)
     }
   }
-  
-  func combineLatestAs<T, U, R: AnyObject>(signals:[RACSignal], reduce:(T,U) -> R) -> RACSignal {
+}
+
+class RACSignalEx {
+  class func combineLatestAs<T, U, R: AnyObject>(signals:[RACSignal], reduce:(T,U) -> R) -> RACSignal {
     return RACSignal.combineLatest(signals).mapAs {
       (tuple: RACTuple) -> R in
       return reduce(tuple.first as T, tuple.second as U)
     }
   }
-  
 }

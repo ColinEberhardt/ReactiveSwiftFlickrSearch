@@ -26,6 +26,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    title = _viewModel.title
+    
     _bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(_viewModel, "searchResults"), nibName: "SearchResultsTableViewCell")
     _bindingHelper.delegate = self
   }

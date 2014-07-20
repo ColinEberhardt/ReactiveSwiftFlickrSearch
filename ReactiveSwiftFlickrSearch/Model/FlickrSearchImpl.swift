@@ -34,17 +34,8 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       flickrRequest.delegate = self;
       self.requests.addObject(flickrRequest)
       
-      func extractSecondTupleArg(signal: RACSignal) -> RACSignal {
-        return signal.mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
-      }
-      
       let sucessSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didCompleteWithResponse:"),
         fromProtocol: OFFlickrAPIRequestDelegate.self)
-      
-     /* sucessSignal.filterAs {
-          (tuple: RACTuple) -> Bool in
-          tuple.first as NSObject == flickrRequest
-        }*/
       
       sucessSignal.filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
         .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
@@ -53,24 +44,18 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
           (next: AnyObject!) -> () in
           subscriber.sendNext(next)
           subscriber.sendCompleted()
-      }
+        }
       
-      /*extractSecondTupleArg(sucessSignal)
-        .mapAs(transform)
-        .subscribeNext {
-          (next: AnyObject!) -> () in
-          subscriber.sendNext(next)
-          subscriber.sendCompleted()
-        }*/
       
       let failSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didFailWithError:"),
         fromProtocol: OFFlickrAPIRequestDelegate.self)
       
-      extractSecondTupleArg(failSignal).subscribeNextAs {
-        (error: NSError) -> () in
-        println("error: \(error)")
-        subscriber.sendError(error)
-      }
+      failSignal.mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
+        .subscribeNextAs {
+          (error: NSError) -> () in
+          println("error: \(error)")
+          subscriber.sendError(error)
+        }
       
       flickrRequest.callAPIMethodWithGET(method, arguments: arguments)
       
@@ -101,9 +86,9 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   
   func flickrImageMetadata(photoId: String) -> RACSignal {
     
-    // String is not AnyObject?
     let favouritesSignal = signalFromAPIMethod("flickr.photos.getFavorites",
       arguments: ["photo_id": photoId]) {
+        // String is not AnyObject?
         (response: NSDictionary) -> NSString in
         return response.valueForKeyPath("photo.total") as NSString
       }
@@ -114,10 +99,10 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         return response.valueForKeyPath("photo.comments._text") as NSString
     }
     
-    return RACSignal.combineLatest([favouritesSignal, commentsSignal]).mapAs {
-      (tuple: RACTuple) -> FlickrPhotoMetadata in
-      return FlickrPhotoMetadata(favourites: tuple.first.integerValue, comments: tuple.second.integerValue)
-    };
+    return RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {
+      (favourites:NSString, comments:NSString) -> FlickrPhotoMetadata in
+      return FlickrPhotoMetadata(favourites: favourites.integerValue, comments: comments.integerValue)
+    }
   }
 
 
