@@ -37,9 +37,6 @@
 		3CF973E119766188003F00E9 /* PreviousSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */; };
 		3CF973E3197665DE003F00E9 /* RecentSearchItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */; };
 		3CF973E5197665F5003F00E9 /* RecentSearchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */; };
-		3CFDE07E1976D8E7008307B1 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDE07D1976D8E7008307B1 /* MyViewController.swift */; };
-		3CFDE0871976D988008307B1 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFDE0861976D988008307B1 /* MyCell.xib */; };
-		3CFDE0891976E79E008307B1 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFDE0881976E79E008307B1 /* MyCell.swift */; };
 		706B0F4AD7F142E28D83E73F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC9F0125DC94673BE34E6DE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -138,9 +135,6 @@
 		3CF973E019766188003F00E9 /* PreviousSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousSearchViewModel.swift; sourceTree = "<group>"; };
 		3CF973E2197665DE003F00E9 /* RecentSearchItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentSearchItemTableViewCell.xib; sourceTree = "<group>"; };
 		3CF973E4197665F5003F00E9 /* RecentSearchItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchItemTableViewCell.swift; sourceTree = "<group>"; };
-		3CFDE07D1976D8E7008307B1 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
-		3CFDE0861976D988008307B1 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
-		3CFDE0881976E79E008307B1 /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		925AF8DC64B84FA49E942471 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DDC9F0125DC94673BE34E6DE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -251,9 +245,6 @@
 				3CE213DA1969B9E700CE9B0B /* Supporting Files */,
 				3CE21D831969BD7F00CE9B0B /* BridgingHeader.h */,
 				3C0E602B1975D2B70009D5B2 /* ViewModelServicesImpl.swift */,
-				3CFDE07D1976D8E7008307B1 /* MyViewController.swift */,
-				3CFDE0861976D988008307B1 /* MyCell.xib */,
-				3CFDE0881976E79E008307B1 /* MyCell.swift */,
 			);
 			path = ReactiveSwiftFlickrSearch;
 			sourceTree = "<group>";
@@ -446,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0E60221975B3930009D5B2 /* FlickrSearchViewController.xib in Resources */,
-				3CFDE0871976D988008307B1 /* MyCell.xib in Resources */,
 				3CF973E3197665DE003F00E9 /* RecentSearchItemTableViewCell.xib in Resources */,
 				3CE213E41969B9E700CE9B0B /* Images.xcassets in Resources */,
 				3CF973DD19765B01003F00E9 /* SearchResultsTableViewCell.xib in Resources */,
@@ -523,8 +513,6 @@
 				3C0E602C1975D2B70009D5B2 /* ViewModelServicesImpl.swift in Sources */,
 				3CC6ABF51975065D008F0262 /* FlickrSearchImpl.swift in Sources */,
 				3CF973E5197665F5003F00E9 /* RecentSearchItemTableViewCell.swift in Sources */,
-				3CFDE0891976E79E008307B1 /* MyCell.swift in Sources */,
-				3CFDE07E1976D8E7008307B1 /* MyViewController.swift in Sources */,
 				3C1497231975D730002548CC /* SearchResultsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

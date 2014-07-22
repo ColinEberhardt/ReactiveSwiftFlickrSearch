@@ -10,23 +10,17 @@ import Foundation
 
 class ViewModelServicesImpl: ViewModelServices {
   
-  let _navigationController: UINavigationController
-  let _flickrSearchService: FlickrSearch
-  
-  var flickrSearchService: FlickrSearch {
-    get {
-      return _flickrSearchService
-    }
-  }
+  private let navigationController: UINavigationController
+  let flickrSearchService: FlickrSearch
   
   init(navigationController: UINavigationController) {
-    _navigationController = navigationController
-    _flickrSearchService = FlickrSearchImpl()
+    self.navigationController = navigationController
+    self.flickrSearchService = FlickrSearchImpl()
   }
   
   func pushViewModel(viewModel:AnyObject) {
     if let searchResultsViewModel = viewModel as? SearchResultsViewModel {
-      _navigationController.pushViewController(SearchResultsViewController(viewModel: searchResultsViewModel), animated: true)
+      self.navigationController.pushViewController(SearchResultsViewController(viewModel: searchResultsViewModel), animated: true)
     }
   }
 }

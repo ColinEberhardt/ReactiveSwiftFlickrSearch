@@ -10,9 +10,13 @@ import Foundation
 
 class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   
-  let requests: NSMutableSet
-  let flickrContext: OFFlickrAPIContext
-  var flickrRequest: OFFlickrAPIRequest?
+  //MARK: Properties
+  
+  private let requests: NSMutableSet
+  private let flickrContext: OFFlickrAPIContext
+  private var flickrRequest: OFFlickrAPIRequest?
+  
+  //MARK: Public API
   
   init() {
     let flickrAPIKey = "9d1bdbde083bc30ebe168a64aac50be5";
@@ -22,48 +26,6 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     requests = NSMutableSet()
     
     flickrRequest = nil
-  }
-  
-  func signalFromAPIMethod<T: AnyObject>(method: String, arguments: [String:String],
-    transform: (NSDictionary) -> T) -> RACSignal {
-      
-    return RACSignal.createSignal({
-      (subscriber: RACSubscriber!) -> RACDisposable! in
-      
-      let flickrRequest = OFFlickrAPIRequest(APIContext: self.flickrContext);
-      flickrRequest.delegate = self;
-      self.requests.addObject(flickrRequest)
-      
-      let sucessSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didCompleteWithResponse:"),
-        fromProtocol: OFFlickrAPIRequestDelegate.self)
-      
-      sucessSignal.filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
-        .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
-        .mapAs(transform)
-        .subscribeNext {
-          (next: AnyObject!) -> () in
-          subscriber.sendNext(next)
-          subscriber.sendCompleted()
-        }
-      
-      
-      let failSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didFailWithError:"),
-        fromProtocol: OFFlickrAPIRequestDelegate.self)
-      
-      failSignal.mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
-        .subscribeNextAs {
-          (error: NSError) -> () in
-          println("error: \(error)")
-          subscriber.sendError(error)
-        }
-      
-      flickrRequest.callAPIMethodWithGET(method, arguments: arguments)
-      
-      return RACDisposable(block: {
-        self.requests.removeObject(flickrRequest)
-      })
-    })
-    
   }
   
   func flickrSearchSignal(searchString: String) -> RACSignal {
@@ -103,6 +65,50 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       (favourites:NSString, comments:NSString) -> FlickrPhotoMetadata in
       return FlickrPhotoMetadata(favourites: favourites.integerValue, comments: comments.integerValue)
     }
+  }
+  
+  //MARK: Private
+  
+  private func signalFromAPIMethod<T: AnyObject>(method: String, arguments: [String:String],
+    transform: (NSDictionary) -> T) -> RACSignal {
+      
+      return RACSignal.createSignal({
+        (subscriber: RACSubscriber!) -> RACDisposable! in
+        
+        let flickrRequest = OFFlickrAPIRequest(APIContext: self.flickrContext);
+        flickrRequest.delegate = self;
+        self.requests.addObject(flickrRequest)
+        
+        let sucessSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didCompleteWithResponse:"),
+          fromProtocol: OFFlickrAPIRequestDelegate.self)
+        
+        sucessSignal.filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
+          .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
+          .mapAs(transform)
+          .subscribeNext {
+            (next: AnyObject!) -> () in
+            subscriber.sendNext(next)
+            subscriber.sendCompleted()
+        }
+        
+        
+        let failSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didFailWithError:"),
+          fromProtocol: OFFlickrAPIRequestDelegate.self)
+        
+        failSignal.mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
+          .subscribeNextAs {
+            (error: NSError) -> () in
+            println("error: \(error)")
+            subscriber.sendError(error)
+        }
+        
+        flickrRequest.callAPIMethodWithGET(method, arguments: arguments)
+        
+        return RACDisposable(block: {
+          self.requests.removeObject(flickrRequest)
+          })
+        })
+      
   }
 
 

@@ -17,7 +17,6 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
   @IBOutlet var imageThumbnailView: UIImageView!
   @IBOutlet var titleLabel: UILabel!
   
-  
   func bindViewModel(viewModel: AnyObject) {
     let photo = viewModel as SearchResultsItemViewModel
     titleLabel.text = photo.title

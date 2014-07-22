@@ -10,6 +10,8 @@ import Foundation
 
 class FlickrSearchViewModel: NSObject {
   
+  //MARK: Properties
+  
   var searchText = ""
   let executeSearch: RACCommand!
   let title = "Flickr Search"
@@ -17,11 +19,13 @@ class FlickrSearchViewModel: NSObject {
   let connectionErrors: RACSignal!
   var previousSearches: [PreviousSearchViewModel]
   
-  let _services: ViewModelServices
+  private let services: ViewModelServices
+  
+  //MARK: Public API
   
   init(services: ViewModelServices) {
     
-    _services = services
+    self.services = services
     previousSearches = []
     
     super.init()
@@ -33,7 +37,7 @@ class FlickrSearchViewModel: NSObject {
     
     executeSearch = RACCommand(enabled: validSearchSignal) {
       (any:AnyObject!) -> RACSignal in
-      return self._executeSearchSignal()
+      return self.executeSearchSignal()
     }
     connectionErrors = executeSearch.errors
     
@@ -41,20 +45,22 @@ class FlickrSearchViewModel: NSObject {
       (any:AnyObject!) -> RACSignal in
       let previousSearch = any as PreviousSearchViewModel
       self.searchText = previousSearch.searchString
-      return self._executeSearchSignal()
+      return self.executeSearchSignal()
     }
   }
   
-  func _executeSearchSignal() -> RACSignal {
-    return _services.flickrSearchService.flickrSearchSignal(searchText).doNextAs {
+  //MARK: Private methods
+  
+  private func executeSearchSignal() -> RACSignal {
+    return services.flickrSearchService.flickrSearchSignal(searchText).doNextAs {
       (results: FlickrSearchResults) -> () in
-      let viewModel = SearchResultsViewModel(services: self._services, searchResults: results)
-      self._services.pushViewModel(viewModel)
-      self._addToSearchHistory(results)
+      let viewModel = SearchResultsViewModel(services: self.services, searchResults: results)
+      self.services.pushViewModel(viewModel)
+      self.addToSearchHistory(results)
     }
   }
   
-  func _addToSearchHistory(result: FlickrSearchResults) {
+  private func addToSearchHistory(result: FlickrSearchResults) {
     let matches = previousSearches.filter { $0.searchString == self.searchText }
     
     var previousSearchesUpdated = previousSearches

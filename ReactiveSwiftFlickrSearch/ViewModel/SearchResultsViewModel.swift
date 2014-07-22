@@ -10,9 +10,10 @@ import Foundation
 
 class SearchResultsViewModel: NSObject {
   
-  let services: ViewModelServices
   var searchResults: [SearchResultsItemViewModel]
   let title: String
+  
+  private let services: ViewModelServices
   
   init(services: ViewModelServices, searchResults: FlickrSearchResults) {
     self.services = services

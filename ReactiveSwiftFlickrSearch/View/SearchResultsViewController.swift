@@ -12,11 +12,11 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate {
   
   @IBOutlet var searchResultsTable: UITableView!
   
-  let _viewModel: SearchResultsViewModel
-  var _bindingHelper: TableViewBindingHelper!
+  private let viewModel: SearchResultsViewModel
+  private var bindingHelper: TableViewBindingHelper!
   
   init(viewModel:SearchResultsViewModel) {
-    _viewModel = viewModel
+    self.viewModel = viewModel
 
     super.init(nibName: "SearchResultsViewController", bundle: nil)
     
@@ -26,10 +26,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = _viewModel.title
+    title = viewModel.title
     
-    _bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(_viewModel, "searchResults"), nibName: "SearchResultsTableViewCell")
-    _bindingHelper.delegate = self
+    bindingHelper = TableViewBindingHelper(tableView: searchResultsTable, sourceSignal: RACObserve(viewModel, "searchResults"), nibName: "SearchResultsTableViewCell")
+    bindingHelper.delegate = self
   }
   
   func scrollViewDidScroll(scrollView: UIScrollView!) {

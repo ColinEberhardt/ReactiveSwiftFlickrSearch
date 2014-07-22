@@ -15,11 +15,11 @@ class FlickrSearchViewController: UIViewController {
   @IBOutlet var searchHistoryTable: UITableView!
   @IBOutlet var loadingIndicator: UIActivityIndicatorView!
   
-  let _viewModel: FlickrSearchViewModel
-  var _bindingHelper: TableViewBindingHelper!
+  private let viewModel: FlickrSearchViewModel
+  private var bindingHelper: TableViewBindingHelper!
   
   init(viewModel:FlickrSearchViewModel) {
-    _viewModel = viewModel
+    self.viewModel = viewModel
     
     super.init(nibName: "FlickrSearchViewController", bundle: nil)
     
@@ -32,22 +32,22 @@ class FlickrSearchViewController: UIViewController {
     bindViewModel()
   }
   
-  func bindViewModel() {
-    title = _viewModel.title
+  private func bindViewModel() {
+    title = viewModel.title
     
-    searchTextField.rac_textSignal() ~> RAC(_viewModel, "searchText")
+    searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
     
-    _viewModel.executeSearch.executing.NOT() ~> RAC(loadingIndicator, "hidden")
+    viewModel.executeSearch.executing.NOT() ~> RAC(loadingIndicator, "hidden")
     
-    _viewModel.executeSearch.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
+    viewModel.executeSearch.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
     
-    searchButton.rac_command = _viewModel.executeSearch
+    searchButton.rac_command = viewModel.executeSearch
     
-    _bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable,
-      sourceSignal: RACObserve(_viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell",
-      selectionCommand: _viewModel.previousSearchSelected)
+    bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable,
+      sourceSignal: RACObserve(viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell",
+      selectionCommand: viewModel.previousSearchSelected)
     
-    _viewModel.connectionErrors.subscribeNextAs {
+    viewModel.connectionErrors.subscribeNextAs {
       (error: NSError) -> () in
       let alert = UIAlertView(title: "Connection Error", message: "There was a problem reaching Flickr", delegate: nil, cancelButtonTitle: "OK")
       alert.show()
@@ -58,7 +58,7 @@ class FlickrSearchViewController: UIViewController {
     func resign() -> () {
       searchTextField.resignFirstResponder()
     }
-    _viewModel.executeSearch.executionSignals.subscribeNext{(any:AnyObject!) -> () in
+    viewModel.executeSearch.executionSignals.subscribeNext{(any:AnyObject!) -> () in
       resign()
     }
   }

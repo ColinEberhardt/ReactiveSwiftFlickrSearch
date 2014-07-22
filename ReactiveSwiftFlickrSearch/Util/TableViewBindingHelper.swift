@@ -14,12 +14,16 @@ import Foundation
 
 class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelegate {
   
-  let tableView: UITableView
-  let templateCell: UITableViewCell
-  let selectionCommand: RACCommand?
+  //MARK: Properties
+  
   var delegate: UITableViewDelegate?
-  var data: [AnyObject]
+  
+  private let tableView: UITableView
+  private let templateCell: UITableViewCell
+  private let selectionCommand: RACCommand?
+  private var data: [AnyObject]
 
+  //MARK: Public API
   
   init(tableView: UITableView, sourceSignal: RACSignal, nibName: String, selectionCommand: RACCommand? = nil) {
     self.tableView = tableView
@@ -43,6 +47,8 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
     tableView.dataSource = self
     tableView.delegate = self
   }
+  
+  //MARK: Private
   
   func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
     return data.count
@@ -72,18 +78,4 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
       self.delegate?.scrollViewDidScroll?(scrollView);
     }
   }
-  
-  /*override func respondsToSelector(aSelector: Selector) -> Bool {
-    if self.delegate?.respondsToSelector(aSelector) {
-      return true
-    }
-    return super.respondsToSelector(aSelector)
-  }
-  
-  override func forwardingTargetForSelector(aSelector: Selector) -> AnyObject! {
-    if self.delegate? .respondsToSelector(aSelector) {
-      return self.delegate
-    }
-    return super.forwardingTargetForSelector(aSelector)
-  }*/
 }

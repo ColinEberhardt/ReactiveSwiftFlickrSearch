@@ -17,10 +17,10 @@ class SearchResultsItemViewModel: NSObject {
   var comments: NSNumber
   var identifier: String
   
-  let _services: ViewModelServices
+  private let services: ViewModelServices
   
   init(photo: FlickrPhoto, services: ViewModelServices) {
-    _services = services
+    self.services = services
     title = photo.title
     url = photo.url
     identifier = photo.identifier
@@ -39,7 +39,7 @@ class SearchResultsItemViewModel: NSObject {
     
     fetchMetadata.subscribeNext {
       (next: AnyObject!) -> () in
-      self._services.flickrSearchService.flickrImageMetadata(self.identifier).subscribeNextAs {
+      self.services.flickrSearchService.flickrImageMetadata(self.identifier).subscribeNextAs {
         (metadata: FlickrPhotoMetadata) -> () in
         self.favourites = metadata.favourites
         self.comments = metadata.comments
