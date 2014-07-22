@@ -10,12 +10,13 @@ import Foundation
 
 class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
   
-  @IBOutlet var favouritesLabel: UILabel
-  @IBOutlet var commentsLabel: UILabel
-  @IBOutlet var favouritesIcon: UIImageView
-  @IBOutlet var commentsIcon: UIImageView
-  @IBOutlet var imageThumbnailView: UIImageView
-  @IBOutlet var titleLabel: UILabel
+  @IBOutlet var favouritesLabel: UILabel!
+  @IBOutlet var commentsLabel: UILabel!
+  @IBOutlet var favouritesIcon: UIImageView!
+  @IBOutlet var commentsIcon: UIImageView!
+  @IBOutlet var imageThumbnailView: UIImageView!
+  @IBOutlet var titleLabel: UILabel!
+  
   
   func bindViewModel(viewModel: AnyObject) {
     let photo = viewModel as SearchResultsItemViewModel
@@ -65,7 +66,7 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     return signal.subscribeOn(scheduler)
   }
   
-  func setParallax(value:Float) {
+  func setParallax(value: CGFloat) {
     imageThumbnailView.transform = CGAffineTransformMakeTranslation(0, value)
   }
 }

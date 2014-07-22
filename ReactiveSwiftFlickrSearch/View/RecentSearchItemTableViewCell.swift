@@ -11,9 +11,9 @@ import Foundation
 class RecentSearchItemTableViewCell: UITableViewCell, ReactiveView {
   
   
-  @IBOutlet var thumbnailImage: UIImageView
-  @IBOutlet var totalResultsLabel: UILabel
-  @IBOutlet var recentSearchLabel: UILabel
+  @IBOutlet var thumbnailImage: UIImageView!
+  @IBOutlet var totalResultsLabel: UILabel!
+  @IBOutlet var recentSearchLabel: UILabel!
   
   func bindViewModel(viewModel: AnyObject) {
     let previousSearch = viewModel as PreviousSearchViewModel

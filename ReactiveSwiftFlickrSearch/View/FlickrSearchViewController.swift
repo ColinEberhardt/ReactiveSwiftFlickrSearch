@@ -10,10 +10,10 @@ import Foundation
 
 class FlickrSearchViewController: UIViewController {
 
-  @IBOutlet var searchTextField: UITextField
-  @IBOutlet var searchButton: UIButton
-  @IBOutlet var searchHistoryTable: UITableView
-  @IBOutlet var loadingIndicator: UIActivityIndicatorView
+  @IBOutlet var searchTextField: UITextField!
+  @IBOutlet var searchButton: UIButton!
+  @IBOutlet var searchHistoryTable: UITableView!
+  @IBOutlet var loadingIndicator: UIActivityIndicatorView!
   
   let _viewModel: FlickrSearchViewModel
   var _bindingHelper: TableViewBindingHelper!
