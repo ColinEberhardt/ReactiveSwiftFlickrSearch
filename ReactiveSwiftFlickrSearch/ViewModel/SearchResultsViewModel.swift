@@ -8,6 +8,7 @@
 
 import Foundation
 
+// A ViewModel that exposes the results of a Flickr search
 class SearchResultsViewModel: NSObject {
   
   var searchResults: [SearchResultsItemViewModel]

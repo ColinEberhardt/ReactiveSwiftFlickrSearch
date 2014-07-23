@@ -8,6 +8,7 @@
 
 import Foundation
 
+// a struct that replaces the RAC macro
 struct RAC  {
   var target : NSObject!
   var keyPath : String!

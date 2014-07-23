@@ -8,6 +8,7 @@
 
 import Foundation
 
+// A ViewModel that backs an individual photo in a search result view.
 class SearchResultsItemViewModel: NSObject {
   
   var isVisible: Bool
@@ -30,11 +31,14 @@ class SearchResultsItemViewModel: NSObject {
     
     super.init()
     
+    // a signal that emits events when visibility changes
     let visibleStateChanged = RACObserve(self, "isVisible").skip(1)
     
+    // filtered into visible and hidden signals
     let visibleSignal = visibleStateChanged.filter { $0.boolValue }
     let hiddenSignal = visibleStateChanged.filter { !$0.boolValue }
     
+    // a signal that emits when an item has been visible for 1 second
     let fetchMetadata = visibleSignal.delay(1).takeUntil(hiddenSignal)
     
     fetchMetadata.subscribeNext {

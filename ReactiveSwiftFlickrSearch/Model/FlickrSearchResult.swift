@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Represents the result of a Flickr search
 class FlickrSearchResults {
   let searchString: String
   let totalResults: Int

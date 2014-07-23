@@ -8,6 +8,7 @@
 
 import Foundation
 
+// represents a single photo in a Flickr search
 class FlickrPhoto {
 
   let title :String

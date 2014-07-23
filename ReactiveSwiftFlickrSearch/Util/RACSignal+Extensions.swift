@@ -8,7 +8,9 @@
 
 import Foundation
 
+// a collection of extension methods that allows for strongly typed closures
 extension RACSignal {
+  
   func subscribeNextAs<T>(nextClosure:(T) -> ()) -> () {
     self.subscribeNext {
       (next: AnyObject!) -> () in

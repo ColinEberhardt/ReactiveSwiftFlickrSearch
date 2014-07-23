@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Represents a search that was executed previously
 class PreviousSearchViewModel: NSObject {
 
   let searchString: String

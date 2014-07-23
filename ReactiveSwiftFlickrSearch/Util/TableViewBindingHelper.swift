@@ -12,6 +12,8 @@ import Foundation
   func bindViewModel(viewModel: AnyObject)
 }
 
+// a helper that makes it easier to bind to UITableView instances
+// see: http://www.scottlogic.com/blog/2014/05/11/reactivecocoa-tableview-binding.html
 class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelegate {
   
   //MARK: Properties

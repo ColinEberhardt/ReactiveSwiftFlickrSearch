@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Represents the metadata relating to a single photo
 class FlickrPhotoMetadata {
   let favourites: Int
   let comments: Int

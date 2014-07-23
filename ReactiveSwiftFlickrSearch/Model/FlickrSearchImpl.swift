@@ -8,6 +8,7 @@
 
 import Foundation
 
+// An implementation of the FlickrSearch protocol
 class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   
   //MARK: Properties
@@ -28,6 +29,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     flickrRequest = nil
   }
   
+  // searches Flickr for the given string, returning a signal that emits the response
   func flickrSearchSignal(searchString: String) -> RACSignal {
     
     func photosFromDictionary (response: NSDictionary) -> FlickrSearchResults {
@@ -46,6 +48,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       transform: photosFromDictionary);
   }
   
+  // searches Flickr for the given photo metadata, returning a signal that emits the response
   func flickrImageMetadata(photoId: String) -> RACSignal {
     
     let favouritesSignal = signalFromAPIMethod("flickr.photos.getFavorites",
@@ -69,6 +72,8 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   
   //MARK: Private
   
+  // a utility method that searches Flickr with the given method and arguments. The response
+  // is transformed via the given function.
   private func signalFromAPIMethod<T: AnyObject>(method: String, arguments: [String:String],
     transform: (NSDictionary) -> T) -> RACSignal {
       
@@ -82,9 +87,14 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         let sucessSignal = self.rac_signalForSelector(Selector("flickrAPIRequest:didCompleteWithResponse:"),
           fromProtocol: OFFlickrAPIRequestDelegate.self)
         
-        sucessSignal.filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
+        sucessSignal
+          // filter to only include responses from this request
+          .filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
+          // extract the second tuple argument, which is the response dictionary
           .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
+          // transform with the given function
           .mapAs(transform)
+          // subscribe, sending the results to the outer signal
           .subscribeNext {
             (next: AnyObject!) -> () in
             subscriber.sendNext(next)
@@ -105,7 +115,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         flickrRequest.callAPIMethodWithGET(method, arguments: arguments)
         
         return RACDisposable(block: {
-          self.requests.removeObject(flickrRequest)
+            self.requests.removeObject(flickrRequest)
           })
         })
       

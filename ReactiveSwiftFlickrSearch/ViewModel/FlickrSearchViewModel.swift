@@ -8,6 +8,9 @@
 
 import Foundation
 
+// The top-level ViewModel, exposes an interface that allows you
+// to search Flickr via a search string It also displays the 
+// history of recent searches
 class FlickrSearchViewModel: NSObject {
   
   //MARK: Properties
