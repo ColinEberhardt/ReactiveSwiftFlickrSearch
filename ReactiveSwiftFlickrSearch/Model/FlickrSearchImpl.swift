@@ -110,7 +110,4 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         })
       
   }
-
-
-
 }
