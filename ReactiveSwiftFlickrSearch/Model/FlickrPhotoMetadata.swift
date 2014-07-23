@@ -13,8 +13,8 @@ class FlickrPhotoMetadata {
   let favourites: Int
   let comments: Int
   
-  init(favourites:Int, comments: Int) {
-    self.favourites = favourites
-    self.comments = comments
+  init(favourites:Int?, comments: Int?) {
+    self.favourites = favourites ? favourites! : 0
+    self.comments = comments ? comments! : 0
   }
 }

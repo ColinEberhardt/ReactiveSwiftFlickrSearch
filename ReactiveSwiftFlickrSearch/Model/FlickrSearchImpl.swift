@@ -35,7 +35,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     func photosFromDictionary (response: NSDictionary) -> FlickrSearchResults {
       let photoArray = response.valueForKeyPath("photos.photo") as [[String: String]]
       let photos = photoArray.map {
-        (photoDict: [String:String]) -> FlickrPhoto in
+        (photoDict) -> FlickrPhoto in
         let url = self.flickrContext.photoSourceURLFromDictionary(photoDict, size: OFFlickrSmallSize)
         return FlickrPhoto(title: photoDict["title"]!, url: url, identifier: photoDict["id"]!)
       }
@@ -65,8 +65,8 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     }
     
     return RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {
-      (favourites:NSString, comments:NSString) -> FlickrPhotoMetadata in
-      return FlickrPhotoMetadata(favourites: favourites.integerValue, comments: comments.integerValue)
+      (favourites:String, comments:String) -> FlickrPhotoMetadata in
+      return FlickrPhotoMetadata(favourites: favourites.toInt(), comments: comments.toInt())
     }
   }
   
