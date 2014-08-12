@@ -11,11 +11,11 @@ import Foundation
 // A ViewModel that backs an individual photo in a search result view.
 class SearchResultsItemViewModel: NSObject {
   
-  var isVisible: Bool
+  dynamic var isVisible: Bool
+  dynamic var favourites: NSNumber
+  dynamic var comments: NSNumber
   let title: String
   let url: NSURL
-  var favourites: NSNumber
-  var comments: NSNumber
   var identifier: String
   
   private let services: ViewModelServices
@@ -33,14 +33,14 @@ class SearchResultsItemViewModel: NSObject {
     
     // a signal that emits events when visibility changes
     let visibleStateChanged = RACObserve(self, "isVisible").skip(1)
-    
+
     // filtered into visible and hidden signals
     let visibleSignal = visibleStateChanged.filter { $0.boolValue }
     let hiddenSignal = visibleStateChanged.filter { !$0.boolValue }
-    
+
     // a signal that emits when an item has been visible for 1 second
     let fetchMetadata = visibleSignal.delay(1).takeUntil(hiddenSignal)
-    
+
     fetchMetadata.subscribeNext {
       (next: AnyObject!) -> () in
       self.services.flickrSearchService.flickrImageMetadata(self.identifier).subscribeNextAs {

@@ -15,16 +15,16 @@ class FlickrSearchViewModel: NSObject {
   
   //MARK: Properties
   
-  var searchText = ""
+  dynamic var searchText = ""
+  dynamic var previousSearches: [PreviousSearchViewModel]
   let executeSearch: RACCommand!
   let title = "Flickr Search"
   let previousSearchSelected: RACCommand!
   let connectionErrors: RACSignal!
-  var previousSearches: [PreviousSearchViewModel]
   
   private let services: ViewModelServices
   
-  //MARK: Public API
+  //MARK: Public APIprintln
   
   init(services: ViewModelServices) {
     

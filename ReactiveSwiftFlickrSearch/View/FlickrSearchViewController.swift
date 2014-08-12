@@ -18,6 +18,10 @@ class FlickrSearchViewController: UIViewController {
   private let viewModel: FlickrSearchViewModel
   private var bindingHelper: TableViewBindingHelper!
   
+  required init(coder: NSCoder) {
+    fatalError("NSCoding not supported")
+  }
+  
   init(viewModel:FlickrSearchViewModel) {
     self.viewModel = viewModel
     

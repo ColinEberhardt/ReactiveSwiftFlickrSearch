@@ -19,7 +19,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   
   //MARK: Public API
   
-  init() {
+  override init() {
     let flickrAPIKey = "9d1bdbde083bc30ebe168a64aac50be5";
     let flickrAPISharedSecret = "5fbfa610234c6c23";
     flickrContext = OFFlickrAPIContext(APIKey: flickrAPIKey, sharedSecret:flickrAPISharedSecret)
@@ -65,8 +65,8 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
     }
     
     return RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {
-      (favourites:String, comments:String) -> FlickrPhotoMetadata in
-      return FlickrPhotoMetadata(favourites: favourites.toInt(), comments: comments.toInt())
+      (favourites:NSString, comments:NSString) -> FlickrPhotoMetadata in
+      return FlickrPhotoMetadata(favourites: favourites.integerValue, comments: comments.integerValue)
     }
   }
   

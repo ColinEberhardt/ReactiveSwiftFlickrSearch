@@ -34,17 +34,17 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     
     RACObserve(photo, "favourites").subscribeNextAs {
       (faves:NSNumber) -> () in
-      self.favouritesLabel.text = faves == -1 ? "" : "\(faves)"
-      self.favouritesIcon.hidden = faves == -1
+      self.favouritesLabel.text = Int(faves) == -1 ? "" : "\(Int(faves))"
+      self.favouritesIcon.hidden = Int(faves) == -1
     }
     
     RACObserve(photo, "comments").subscribeNextAs {
       (comments:NSNumber) -> () in
-      self.commentsLabel.text = comments == -1 ? "" : "\(comments)"
-      self.commentsIcon.hidden = comments == -1
+      self.commentsLabel.text = Int(comments) == -1 ? "" : "\(comments)"
+      self.commentsIcon.hidden = Int(comments) == -1
     }
     
-    photo.isVisible = true
+    photo.isVisible = true  
     self.rac_prepareForReuseSignal.subscribeNext {
       (next: AnyObject!) -> () in
       self.imageThumbnailView.image = nil

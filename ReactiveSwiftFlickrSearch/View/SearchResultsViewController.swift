@@ -15,6 +15,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate {
   private let viewModel: SearchResultsViewModel
   private var bindingHelper: TableViewBindingHelper!
   
+  required init(coder: NSCoder) {
+    fatalError("NSCoding not supported")
+  }
+  
   init(viewModel:SearchResultsViewModel) {
     self.viewModel = viewModel
 

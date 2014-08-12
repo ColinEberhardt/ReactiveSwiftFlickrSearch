@@ -14,7 +14,7 @@ class FlickrPhotoMetadata {
   let comments: Int
   
   init(favourites:Int?, comments: Int?) {
-    self.favourites = favourites ? favourites! : 0
-    self.comments = comments ? comments! : 0
+    self.favourites = favourites != nil ? favourites! : 0
+    self.comments = comments != nil ? comments! : 0
   }
 }

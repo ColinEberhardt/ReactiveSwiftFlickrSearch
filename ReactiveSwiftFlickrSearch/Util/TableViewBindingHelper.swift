@@ -70,13 +70,13 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
   }
   
   func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-    if selectionCommand {
+    if selectionCommand != nil {
       selectionCommand?.execute(data[indexPath.row])
     }
   }
   
   func scrollViewDidScroll(scrollView: UIScrollView!) {
-    if self.delegate?.respondsToSelector(Selector("scrollViewDidScroll:")) {
+    if self.delegate?.respondsToSelector(Selector("scrollViewDidScroll:")) == true {
       self.delegate?.scrollViewDidScroll?(scrollView);
     }
   }

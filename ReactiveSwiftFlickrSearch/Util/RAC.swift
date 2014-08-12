@@ -26,7 +26,7 @@ struct RAC  {
   }
 }
 
-operator infix ~> {}
-@infix func ~> (signal: RACSignal, rac: RAC) {
+infix operator ~> {}
+func ~> (signal: RACSignal, rac: RAC) {
   rac.assignSignal(signal)
 }
