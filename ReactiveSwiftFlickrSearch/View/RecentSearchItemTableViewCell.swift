@@ -21,7 +21,7 @@ class RecentSearchItemTableViewCell: UITableViewCell, ReactiveView {
     totalResultsLabel.text = "\(previousSearch.totalResults)"
     
     let data = NSData(contentsOfURL: previousSearch.thumbnail)
-    let image = UIImage(data: data)
+    let image = UIImage(data: data!)
     thumbnailImage.image = image
   }
 }

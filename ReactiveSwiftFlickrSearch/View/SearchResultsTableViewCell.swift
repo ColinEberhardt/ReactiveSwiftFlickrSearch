@@ -57,7 +57,7 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
     let signal = RACSignal.createSignal({
        (subscriber: RACSubscriber!) -> RACDisposable! in
       let data = NSData(contentsOfURL: imageUrl)
-      let image = UIImage(data: data)
+      let image = UIImage(data: data!)
       subscriber.sendNext(image)
       subscriber.sendCompleted()
       return nil

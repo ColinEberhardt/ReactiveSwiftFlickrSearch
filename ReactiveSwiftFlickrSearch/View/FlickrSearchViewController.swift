@@ -57,14 +57,10 @@ class FlickrSearchViewController: UIViewController {
       alert.show()
     }
     
-    // for some reason having this code within the subscribeNext closure
-    // causes a build error
-    func resign() -> () {
-      searchTextField.resignFirstResponder()
+    func hideKeyboard(any: AnyObject!) {
+      self.searchTextField.resignFirstResponder()
     }
-    viewModel.executeSearch.executionSignals.subscribeNext{(any:AnyObject!) -> () in
-      resign()
-    }
+    viewModel.executeSearch.executionSignals.subscribeNext(hideKeyboard)
   }
 
 }

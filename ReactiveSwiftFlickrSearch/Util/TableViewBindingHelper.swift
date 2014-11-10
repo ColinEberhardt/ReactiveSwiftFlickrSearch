@@ -36,7 +36,7 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
 
     // create an instance of the template cell and register with the table view
     templateCell = nib.instantiateWithOwner(nil, options: nil)[0] as UITableViewCell
-    tableView.registerNib(nib, forCellReuseIdentifier: templateCell.reuseIdentifier)
+    tableView.registerNib(nib, forCellReuseIdentifier: templateCell.reuseIdentifier!)
     
     super.init()
     
@@ -52,13 +52,13 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
   
   //MARK: Private
   
-  func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return data.count
   }
-  
-  func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let item: AnyObject = data[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier) as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier!) as UITableViewCell
     if let reactiveView = cell as? ReactiveView {
       reactiveView.bindViewModel(item)
     }

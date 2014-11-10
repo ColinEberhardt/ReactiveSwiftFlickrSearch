@@ -39,7 +39,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         let url = self.flickrContext.photoSourceURLFromDictionary(photoDict, size: OFFlickrSmallSize)
         return FlickrPhoto(title: photoDict["title"]!, url: url, identifier: photoDict["id"]!)
       }
-      let total = response.valueForKeyPath("photos.total").integerValue
+      let total = response.valueForKeyPath("photos.total")!.integerValue
       return FlickrSearchResults(searchString: searchString, totalResults: total, photos: photos)
     }
     
