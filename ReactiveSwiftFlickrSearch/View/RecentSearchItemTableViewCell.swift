@@ -16,7 +16,7 @@ class RecentSearchItemTableViewCell: UITableViewCell, ReactiveView {
   @IBOutlet var recentSearchLabel: UILabel!
   
   func bindViewModel(viewModel: AnyObject) {
-    let previousSearch = viewModel as PreviousSearchViewModel
+    let previousSearch = viewModel as! PreviousSearchViewModel
     recentSearchLabel.text = previousSearch.searchString
     totalResultsLabel.text = "\(previousSearch.totalResults)"
     

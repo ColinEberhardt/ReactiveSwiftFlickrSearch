@@ -41,9 +41,9 @@ class FlickrSearchViewController: UIViewController {
     
     searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
     
-    viewModel.executeSearch.executing.NOT() ~> RAC(loadingIndicator, "hidden")
+    viewModel.executeSearch!.executing.NOT() ~> RAC(loadingIndicator, "hidden")
     
-    viewModel.executeSearch.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
+    viewModel.executeSearch!.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
     
     searchButton.rac_command = viewModel.executeSearch
     
@@ -60,7 +60,7 @@ class FlickrSearchViewController: UIViewController {
     func hideKeyboard(any: AnyObject!) {
       self.searchTextField.resignFirstResponder()
     }
-    viewModel.executeSearch.executionSignals.subscribeNext(hideKeyboard)
+    viewModel.executeSearch!.executionSignals.subscribeNext(hideKeyboard)
   }
 
 }

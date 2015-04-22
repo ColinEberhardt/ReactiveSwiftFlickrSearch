@@ -11,13 +11,11 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
-  var window: UIWindow!
+  var window: UIWindow?
   
   var navigationController: UINavigationController!
 
-
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-    
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
     navigationController = UINavigationController()
     navigationController.navigationBar.barTintColor = UIColor.darkGrayColor()
     navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
@@ -30,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    window.rootViewController = navigationController
-    window.makeKeyAndVisible()
+    window!.rootViewController = navigationController
+    window!.makeKeyAndVisible()
     
     return true
   }
