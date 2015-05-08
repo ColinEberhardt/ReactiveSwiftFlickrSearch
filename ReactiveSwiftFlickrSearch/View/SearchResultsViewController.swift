@@ -38,7 +38,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate {
   
   func scrollViewDidScroll(scrollView: UIScrollView!) {
     let cells = searchResultsTable.visibleCells()
-    for cell in cells as [SearchResultsTableViewCell] {
+    for cell in cells as! [SearchResultsTableViewCell] {
       let value = -40.0 + (cell.frame.origin.y - searchResultsTable.contentOffset.y) / 5.0;
       cell.setParallax(value)
     }

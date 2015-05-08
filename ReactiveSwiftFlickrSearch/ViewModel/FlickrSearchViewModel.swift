@@ -17,10 +17,10 @@ class FlickrSearchViewModel: NSObject {
   
   dynamic var searchText = ""
   dynamic var previousSearches: [PreviousSearchViewModel]
-  let executeSearch: RACCommand!
+  var executeSearch: RACCommand?
   let title = "Flickr Search"
-  let previousSearchSelected: RACCommand!
-  let connectionErrors: RACSignal!
+  var previousSearchSelected: RACCommand!
+  var connectionErrors: RACSignal!
   
   private let services: ViewModelServices
   
@@ -42,14 +42,15 @@ class FlickrSearchViewModel: NSObject {
       (any:AnyObject!) -> RACSignal in
       return self.executeSearchSignal()
     }
-    connectionErrors = executeSearch.errors
+    connectionErrors = executeSearch!.errors
     
     previousSearchSelected = RACCommand() {
       (any:AnyObject!) -> RACSignal in
-      let previousSearch = any as PreviousSearchViewModel
+      let previousSearch = any as! PreviousSearchViewModel
       self.searchText = previousSearch.searchString
       return self.executeSearchSignal()
     }
+    
   }
   
   //MARK: Private methods

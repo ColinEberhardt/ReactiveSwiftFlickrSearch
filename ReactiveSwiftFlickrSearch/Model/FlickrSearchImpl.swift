@@ -33,7 +33,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
   func flickrSearchSignal(searchString: String) -> RACSignal {
     
     func photosFromDictionary (response: NSDictionary) -> FlickrSearchResults {
-      let photoArray = response.valueForKeyPath("photos.photo") as [[String: String]]
+      let photoArray = response.valueForKeyPath("photos.photo") as! [[String: String]]
       let photos = photoArray.map {
         (photoDict) -> FlickrPhoto in
         let url = self.flickrContext.photoSourceURLFromDictionary(photoDict, size: OFFlickrSmallSize)
@@ -55,13 +55,13 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
       arguments: ["photo_id": photoId]) {
         // String is not AnyObject?
         (response: NSDictionary) -> NSString in
-        return response.valueForKeyPath("photo.total") as NSString
+        return response.valueForKeyPath("photo.total") as! NSString
       }
   
     let commentsSignal = signalFromAPIMethod("flickr.photos.getInfo",
       arguments: ["photo_id": photoId]) {
         (response: NSDictionary) -> NSString in
-        return response.valueForKeyPath("photo.comments._text") as NSString
+        return response.valueForKeyPath("photo.comments._text") as! NSString
     }
     
     return RACSignalEx.combineLatestAs([favouritesSignal, commentsSignal]) {
@@ -89,7 +89,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         
         sucessSignal
           // filter to only include responses from this request
-          .filterAs { (tuple: RACTuple) -> Bool in tuple.first as NSObject == flickrRequest }
+          .filterAs { (tuple: RACTuple) -> Bool in tuple.first as! NSObject == flickrRequest }
           // extract the second tuple argument, which is the response dictionary
           .mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
           // transform with the given function
