@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 // The top-level ViewModel, exposes an interface that allows you
 // to search Flickr via a search string It also displays the 
@@ -33,7 +34,7 @@ class FlickrSearchViewModel: NSObject {
     
     super.init()
     
-    let validSearchSignal = RACObserve(self, "searchText").mapAs {
+    let validSearchSignal = RACObserve(self, keyPath: "searchText").mapAs {
         (text: NSString) -> NSNumber in
         return text.length > 3
       }.distinctUntilChanged();

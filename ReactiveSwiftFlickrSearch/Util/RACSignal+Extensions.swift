@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 // a collection of extension methods that allows for strongly typed closures
 extension RACSignal {

@@ -32,7 +32,7 @@ class SearchResultsItemViewModel: NSObject {
     super.init()
     
     // a signal that emits events when visibility changes
-    let visibleStateChanged = RACObserve(self, "isVisible").skip(1)
+    let visibleStateChanged = RACObserve(self, keyPath: "isVisible").skip(1)
 
     // filtered into visible and hidden signals
     let visibleSignal = visibleStateChanged.filter { $0.boolValue }

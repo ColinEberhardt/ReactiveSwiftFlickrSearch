@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ReactiveCocoa
+import objectiveflickr
 
 // An implementation of the FlickrSearch protocol
 class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
@@ -108,7 +110,7 @@ class FlickrSearchImpl : NSObject, FlickrSearch, OFFlickrAPIRequestDelegate {
         failSignal.mapAs { (tuple: RACTuple) -> AnyObject in tuple.second }
           .subscribeNextAs {
             (error: NSError) -> () in
-            println("error: \(error)")
+            print("error: \(error)")
             subscriber.sendError(error)
         }
         
