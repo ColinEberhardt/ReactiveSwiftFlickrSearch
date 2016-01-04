@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 // a struct that replaces the RAC macro
 struct RAC  {

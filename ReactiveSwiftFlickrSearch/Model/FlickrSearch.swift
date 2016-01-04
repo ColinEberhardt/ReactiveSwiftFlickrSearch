@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 // Provides an API for searching Flickr
 protocol FlickrSearch {

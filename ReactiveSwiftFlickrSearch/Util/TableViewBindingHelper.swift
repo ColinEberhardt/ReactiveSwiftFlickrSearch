@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 @objc protocol ReactiveView {
   func bindViewModel(viewModel: AnyObject)
@@ -58,11 +59,11 @@ class TableViewBindingHelper: NSObject, UITableViewDataSource, UITableViewDelega
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let item: AnyObject = data[indexPath.row]
-    let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier!) as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier!)
     if let reactiveView = cell as? ReactiveView {
       reactiveView.bindViewModel(item)
     }
-    return cell
+    return cell!
   }
   
   func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {

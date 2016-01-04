@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
   
@@ -32,13 +33,13 @@ class SearchResultsTableViewCell: UITableViewCell, ReactiveView {
         self.imageThumbnailView.image = image
       }
     
-    RACObserve(photo, "favourites").subscribeNextAs {
+    RACObserve(photo, keyPath: "favourites").subscribeNextAs {
       (faves:NSNumber) -> () in
       self.favouritesLabel.text = Int(faves) == -1 ? "" : "\(Int(faves))"
       self.favouritesIcon.hidden = Int(faves) == -1
     }
     
-    RACObserve(photo, "comments").subscribeNextAs {
+    RACObserve(photo, keyPath: "comments").subscribeNextAs {
       (comments:NSNumber) -> () in
       self.commentsLabel.text = Int(comments) == -1 ? "" : "\(comments)"
       self.commentsIcon.hidden = Int(comments) == -1

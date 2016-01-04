@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 class FlickrSearchViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class FlickrSearchViewController: UIViewController {
   private let viewModel: FlickrSearchViewModel
   private var bindingHelper: TableViewBindingHelper!
   
-  required init(coder: NSCoder) {
+  required init?(coder: NSCoder) {
     fatalError("NSCoding not supported")
   }
   
@@ -41,14 +42,14 @@ class FlickrSearchViewController: UIViewController {
     
     searchTextField.rac_textSignal() ~> RAC(viewModel, "searchText")
     
-    viewModel.executeSearch!.executing.NOT() ~> RAC(loadingIndicator, "hidden")
+    viewModel.executeSearch!.executing.not() ~> RAC(loadingIndicator, "hidden")
     
     viewModel.executeSearch!.executing ~> RAC(UIApplication.sharedApplication(), "networkActivityIndicatorVisible")
     
     searchButton.rac_command = viewModel.executeSearch
     
     bindingHelper = TableViewBindingHelper(tableView: searchHistoryTable,
-      sourceSignal: RACObserve(viewModel, "previousSearches"), nibName: "RecentSearchItemTableViewCell",
+      sourceSignal: RACObserve(viewModel, keyPath: "previousSearches"), nibName: "RecentSearchItemTableViewCell",
       selectionCommand: viewModel.previousSearchSelected)
     
     viewModel.connectionErrors.subscribeNextAs {
