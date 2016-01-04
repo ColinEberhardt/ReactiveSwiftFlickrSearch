@@ -25,7 +25,7 @@ profile
 
 ####
 # Xcode temporary files that should never be committed
-# 
+#
 # NB: NIB/XIB files still exist even on Storyboard projects, so we want this...
 
 *~.nib
@@ -75,6 +75,7 @@ build/
 #
 # NB: this is exclusive with OPTION 2 below
 xcuserdata
+*.xcscmblueprint
 
 # OPTION 2: ---------------------------------
 #     get rid of ALL personal settings, but KEEP SOME OF THEM
@@ -124,13 +125,13 @@ xcuserdata
 
 ####
 # Cocoapods: cocoapods.org
-# 
+#
 # Ignoring these files means that whoever uses the code will first have to run:
 # pod install
 # in the App.xcodeproj directory.
 # This ensures the latest dependencies are used.
 Pods/
-Podfile.lock
+#Podfile.lock
 
 
 ####
