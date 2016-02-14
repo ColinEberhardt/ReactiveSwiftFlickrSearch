@@ -4,4 +4,4 @@ use_frameworks!
 pod 'Box', '2.0'
 pod 'objectiveflickr', '2.0.4'
 pod 'SDWebImage'
-pod 'ReactiveCocoa', '4.0.4-alpha-4'
+pod 'ReactiveCocoa', '4.0.1'
