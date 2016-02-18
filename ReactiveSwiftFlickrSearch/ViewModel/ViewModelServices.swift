@@ -11,7 +11,7 @@ import Foundation
 // provides common services to view models
 protocol ViewModelServices {
   
-  // pushes the given ViewMolde onto the stack, this causes the UI to navigate from
+  // pushes the given ViewModel onto the stack, this causes the UI to navigate from
   // one view to the next
   func pushViewModel(viewModel:AnyObject)
   
